@@ -7,21 +7,12 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
-
+  cypress-run:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    # let's make sure our tests pass on Chrome browser
+    name: E2E on Chrome
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run serve & wait-on http://localhost:8080
-    - run: $(npm bin)/cypress run 
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
