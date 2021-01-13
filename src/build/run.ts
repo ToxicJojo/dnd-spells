@@ -1,12 +1,12 @@
 import { readFile, writeFile } from 'fs'
 import { Parser } from 'xml2js'
 
-interface Compendium {
-  spell: Array<XMLParsedSpell>;
-}
-
 interface XMLParseResult {
   compendium: Compendium;
+}
+
+interface Compendium {
+  spell: Array<XMLParsedSpell>;
 }
 
 interface XMLParsedSpell {
@@ -24,6 +24,7 @@ interface XMLParsedSpell {
 }
 
 interface Spell {
+  id: string;
   name: string;
   classes: Array<string>;
   level: number;
@@ -37,8 +38,15 @@ interface Spell {
   roll: Array<string>;
 }
 
+const nameToId = (name: string) => {
+  let id = name.toLowerCase()
+  id = id.replace(/ /g, '-')
+  return id
+}
+
 const convertSpell = (parsedSpell: XMLParsedSpell) => {
   const spell: Spell = {
+    id: nameToId(parsedSpell.name[0]),
     name: parsedSpell.name[0],
     classes: parsedSpell.classes[0].split(', '),
     level: Number.parseInt(parsedSpell.level[0]),
@@ -71,18 +79,28 @@ const parseXMLFile = (collectionFilePath: string): Promise<XMLParseResult> => {
   })
 }
 
-const writeSpellList = (fileName: string, spellList: Array<Spell>) => {
+const writeSpellList = (fileName: string, spellList: SpellList) => {
   return new Promise((resolve, reject) => {
     const json = JSON.stringify(spellList)
     writeFile(`${__dirname}/${fileName}`, json, resolve)
   })
 }
 
+interface SpellList {
+  [key: string]: Spell;
+}
+
 (async () => {
+  console.log('Staring to create spells.json')
   const collectionFilePath = '../data/CoreRulebooks.xml'
   const parseResult = await parseXMLFile(collectionFilePath)
   const spellList = parseResult.compendium.spell.map(convertSpell)
-  await writeSpellList('../src/data/spell-list.json', spellList)
 
-  console.log(spellList)
+  const spells: SpellList = {}
+  for (const spell of spellList) {
+    spells[spell.id] = spell
+  }
+
+  await writeSpellList('../src/data/spells.json', spells)
+  console.log('Finished to create spells.json')
 })()
