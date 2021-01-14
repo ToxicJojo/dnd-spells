@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "serve:prod": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build",
-    "build:spell-files": "tsc --outDir temp/ src/build/run.ts && node  temp/run.js && rm -r temp/",
+    "build:spell-files": "tsc --outDir temp/ src/build/run.ts && node  temp/build/run.js && rm -r temp/",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
