@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs'
+import { readFile, writeFile, mkdirSync } from 'fs'
 import { Parser } from 'xml2js'
 import { Spell, SpellCollection } from '../types'
 
@@ -96,6 +96,7 @@ const parseXMLFile = (xmlFilePath: string): Promise<XMLParseResult> => {
 const objectToJsonFile = (fileName: string, obj: object) => {
   return new Promise((resolve, reject) => {
     const json = JSON.stringify(obj)
+    mkdirSync(`${__dirname}/../../src/data`, { recursive: true })
     writeFile(`${__dirname}/${fileName}`, json, resolve)
   })
 }

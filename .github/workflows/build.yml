@@ -37,4 +37,5 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
+    - run: npm run build:spell-files
     - run: npm run build

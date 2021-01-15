@@ -21,6 +21,7 @@
     "@cypress/webpack-preprocessor": "^5.5.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^5.2.4",
+    "@types/sinon": "^9.0.10",
     "@types/xml2js": "^0.4.7",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
@@ -46,6 +47,7 @@
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.1.0",
     "sass-loader": "^8.0.2",
+    "sinon": "^9.2.3",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11",
     "xml2js": "^0.4.23"
