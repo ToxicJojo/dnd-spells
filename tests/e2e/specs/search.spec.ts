@@ -36,4 +36,27 @@ describe('Spell Search', () => {
     cy.get('ul.spell-search__results').children().contains('Cantrip')
     cy.get('ul.spell-search__results').children().contains('2nd Level')
   })
+
+  it('doesn\'t show the spell details without interaction', () => {
+    cy.visit('/')
+    cy.get('.spell-search__input').clear().type('Acid')
+    cy.get('.spell-search-result__detail').should('not.exist')
+  })
+
+  it('can open the spell details', () => {
+    cy.visit('/')
+    cy.get('.spell-search__input').clear().type('Acid')
+    cy.get('.spell-search-result__preview > svg').first().click()
+    cy.get('.spell-search-result__detail')
+  })
+
+  it('shows the spells details in the detail view', () => {
+    cy.visit('/')
+    cy.get('.spell-search__input').clear().type('Acid')
+    cy.get('.spell-search-result__preview > svg').first().click()
+    cy.get('.spell-search-result__detail').contains('1 action')
+    cy.get('.spell-search-result__detail').contains('60 feet')
+    cy.get('.spell-search-result__detail').contains('Instantaneous')
+    cy.get('.spell-search-result__detail').contains('V,S')
+  })
 })
