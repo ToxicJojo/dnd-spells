@@ -2,12 +2,15 @@
   .spell-search
     input.spell-search__input(type='text' v-model='searchInput' placeholder='Search a spell')
     ul.spell-search__results
-      li(v-for='spell in searchResults') {{ spell.name }}
+      li(v-for='spell in searchResults')
+        SpellSearchResult(:spell='spell')
 </template>
 
 <script lang='ts'>
-import { Spell, SpellCollection } from '@/types'
 import Vue from 'vue'
+import { Spell, SpellCollection } from '@/types'
+import SpellSearchResult from '@/components/SpellSearchResult.vue'
+import spellFilter from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellSearch',
@@ -21,19 +24,11 @@ export default Vue.extend({
       return this.$store.state.spells
     },
     searchResults (): Array<Spell> {
-      // Return an empty array if there is no search term
-      if (this.searchInput === '') {
-        return []
-      }
-
-      const spellArray = Object.values(this.spells)
-
-      return spellArray.filter((spell) => {
-        // The 'i' flag causes the regular Expression to ignore case
-        const searchRegExp = RegExp(this.searchInput, 'i')
-        return searchRegExp.test(spell.name)
-      })
+      return spellFilter.searchFilter(this.spells, this.searchInput)
     },
+  },
+  components: {
+    SpellSearchResult,
   },
 })
 </script>

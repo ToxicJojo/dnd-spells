@@ -29,4 +29,11 @@ describe('Spell Search', () => {
     cy.get('.spell-search__input').clear().type('Color Spray')
     cy.get('ul.spell-search__results').children().contains('Illusion')
   })
+
+  it('shows the level of the spell results', () => {
+    cy.visit('/')
+    cy.get('.spell-search__input').clear().type('Acid')
+    cy.get('ul.spell-search__results').children().contains('Cantrip')
+    cy.get('ul.spell-search__results').children().contains('2nd Level')
+  })
 })
