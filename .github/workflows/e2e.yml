@@ -13,10 +13,9 @@ jobs:
     name: E2E on Chrome
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build:spell-files
       - uses: cypress-io/github-action@v2
         with:
+          build: npm run build:spell-files
           start: npm run serve:prod
           browser: chrome
         env:
