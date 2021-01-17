@@ -1,6 +1,6 @@
 <template lang='pug'>
   .spell-search
-    input.spell-search__input(type='text' v-model='searchInput' placeholder='Search a spell')
+    input.spell-search__input(type='text' v-model='searchInput' ref='searchInput' placeholder='Search a spell')
     ul.spell-search__results
       li(v-for='spell in searchResults')
         SpellSearchResult(:spell='spell')
@@ -19,6 +19,9 @@ export default Vue.extend({
       searchInput: '',
     }
   },
+  mounted () {
+    (this.$refs.searchInput as HTMLInputElement).focus()
+  },
   computed: {
     spells (): SpellCollection {
       return this.$store.state.spells
@@ -36,22 +39,27 @@ export default Vue.extend({
 <style lang='scss' scoped>
 
 .spell-search {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
 }
 
 .spell-search__input {
   height: 64px;
   font-size: 36px;
+  margin: 16px 0;
+  padding: 16px;
+  border: unset;
   border-radius: 2px;
+  box-shadow: -1px 4px 10px 0 rgba(0,0,0,.75);
+  background: $color-panel-background;
+  color: $color-text;
+  font-family: 'Noto Sans JP';
 }
 
 .spell-search__results {
+  @include flex-col;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 </style>
