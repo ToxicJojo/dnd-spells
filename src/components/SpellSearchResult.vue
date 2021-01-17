@@ -1,10 +1,10 @@
 <template lang="pug">
   .spell-search-result
-    .spell-search-result__preview
+    .spell-search-result__preview(@click='showDetails = !showDetails')
       .spell-search-result__title
         span {{ spell.name }}
         span {{ spell.levelName }} {{ spell.school }}
-      svg(@click='showDetails = !showDetails' xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24' fill='black' width='18px' height='18px')
+      svg( xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24' fill='black' width='18px' height='18px')
         path(d='M0 0h24v24H0z' fill='none')
         path(d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z')
     .spell-search-result__detail(v-if='showDetails')
@@ -55,15 +55,17 @@ export default Vue.extend({
 .spell-search-result {
   display: flex;
   flex-direction: column;
-  padding: 8px;
   border: 1px solid;
   width: 100%;
+  margin: 16px 0px;
 }
 
 .spell-search-result__preview {
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
+  padding: 16px;
 }
 
 .spell-search-result__title {
@@ -73,10 +75,15 @@ export default Vue.extend({
   align-items: center;
 }
 
+.spell-search-result__detail {
+  padding: 16px;
+}
+
 .spell-search-result__detail-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 16px 0;
 }
 
 .spell-search-result__detail-column {

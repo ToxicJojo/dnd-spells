@@ -1,6 +1,7 @@
 <template lang="pug">
   .app
-    router-view
+    .app__content
+      router-view
 </template>
 
 <script lang="ts">
@@ -15,5 +16,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app__content {
+  padding: 32px;
+}
 
 </style>

@@ -35,4 +35,23 @@ export default Vue.extend({
 
 <style lang='scss' scoped>
 
+.spell-search {
+  display: flex;
+  flex-direction: column;
+}
+
+.spell-search__input {
+  height: 64px;
+  font-size: 36px;
+  border-radius: 2px;
+}
+
+.spell-search__results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 </style>
