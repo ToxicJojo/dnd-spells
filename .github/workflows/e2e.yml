@@ -17,3 +17,5 @@ jobs:
         with:
           start: npm run serve:prod
           browser: chrome
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

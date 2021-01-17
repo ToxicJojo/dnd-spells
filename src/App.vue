@@ -16,14 +16,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-
-body {
-  margin: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
+@import '@/scss/style.scss';
 
 .app__content {
   padding: 32px;
