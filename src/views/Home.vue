@@ -14,3 +14,13 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+
+.home {
+  @include flex-col;
+  width: 100%;
+  max-width: 800px;
+}
+
+</style>
