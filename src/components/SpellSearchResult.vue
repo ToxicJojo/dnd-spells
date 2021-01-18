@@ -102,9 +102,10 @@ export default Vue.extend({
 
 .spell-search-result__detail-entry {
   @include flex-col;
-  padding: 16px;
   flex: 50%;
   align-items: center;
+  text-align: center;
+  padding: 16px;
 
   @media (min-width: 650px) {
     flex: 25%;

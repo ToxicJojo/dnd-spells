@@ -1,9 +1,11 @@
 <template lang='pug'>
   .spell-search
     input.spell-search__input(type='text' v-model='searchInput' ref='searchInput' placeholder='Search a spell')
-    ul.spell-search__results
+    ul.spell-search__results(v-if='searchResults.length !== 0')
       li(v-for='spell in searchResults')
         SpellSearchResult(:spell='spell')
+    .spell-search__empty-state(v-else)
+      span There are no spells matching your search
 </template>
 
 <script lang='ts'>
@@ -40,6 +42,7 @@ export default Vue.extend({
 
 .spell-search {
   @include flex-col;
+  flex-grow: 1;
   overflow: hidden;
 }
 
@@ -61,6 +64,18 @@ export default Vue.extend({
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.spell-search__empty-state {
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  color: #eee;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  opacity: .7;
 }
 
 </style>

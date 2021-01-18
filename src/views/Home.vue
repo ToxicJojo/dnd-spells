@@ -21,6 +21,7 @@ export default Vue.extend({
   @include flex-col;
   width: 100%;
   max-width: 800px;
+  flex-grow: 1;
 }
 
 </style>
