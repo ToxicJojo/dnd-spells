@@ -15,5 +15,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
-          start: npm run serve:prod
+          build: npm run build:spell-files
+          start: npm run serve
           browser: chrome
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

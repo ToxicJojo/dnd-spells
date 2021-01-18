@@ -18,6 +18,14 @@ export interface Spell {
    */
   level: number;
   /**
+   * A string representation of the spells level
+   * @example
+   * 'Cantrip'
+   * '1st Level'
+   * '2nd Level'
+   */
+  levelName: string;
+  /**
    * The school of magic the spell belongs to.
    */
   school: string;

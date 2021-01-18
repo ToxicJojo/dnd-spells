@@ -46,6 +46,30 @@ const nameToId = (name: string) => {
   return id
 }
 
+const spellSchoolMap = new Map<string, string>()
+spellSchoolMap.set('A', 'Abjuration')
+spellSchoolMap.set('C', 'Conjuration')
+spellSchoolMap.set('D', 'Divination')
+spellSchoolMap.set('EV', 'Evocation')
+spellSchoolMap.set('EN', 'Enchantment')
+spellSchoolMap.set('I', 'Illusion')
+spellSchoolMap.set('N', 'Necromancy')
+spellSchoolMap.set('T', 'Transmutation')
+
+const spellLevelToString = (spellLevel: string) => {
+  if (spellLevel === '0') {
+    return 'Cantrip'
+  } if (spellLevel === '1') {
+    return '1th Level'
+  } else if (spellLevel === '2') {
+    return '2nd Level'
+  } else if (spellLevel === '3') {
+    return '3rd Level'
+  } else {
+    return `${Number.parseInt(spellLevel)}th Level`
+  }
+}
+
 /**
  * Converts a XMLParsedSpell to an actual usable Spell object.
  * @param parsedSpell The XMLParsedSpell that will be converted.
@@ -55,8 +79,9 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
     id: nameToId(parsedSpell.name[0]),
     name: parsedSpell.name[0],
     classes: parsedSpell.classes[0].split(', '),
-    level: Number.parseInt(parsedSpell.level[0]),
-    school: parsedSpell.school[0],
+    level: Number.parseFloat(parsedSpell.level[0]),
+    levelName: spellLevelToString(parsedSpell.level[0]),
+    school: spellSchoolMap.get(parsedSpell.school[0])!,
     ritual: parsedSpell.ritual[0] === 'YES',
     time: parsedSpell.time[0],
     range: parsedSpell.range[0],

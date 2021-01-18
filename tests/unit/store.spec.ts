@@ -16,6 +16,7 @@ const emptyState = (): StoreState => {
 const acidSplash: Spell = {
   id: 'acid-splash',
   name: 'Acid Splash',
+  levelName: 'Cantrip',
   classes: [
     'Sorcerer',
     'Wizard',
