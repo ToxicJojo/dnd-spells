@@ -11,7 +11,6 @@
         path(d='M0 0h24v24H0z' fill='none')
         path(d='M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z')
     .spell-search-result__detail(v-if='showDetails')
-      p {{ spell.text }}
       .spell-search-result__detail-row
         .spell-search-result__detail-entry
           strong Casting Time:
@@ -29,6 +28,8 @@
               template(v-if='key !== 0')
                 | ,
               | {{ component }}
+      hr
+      p {{ spell.text }}
 
 </template>
 
@@ -96,7 +97,6 @@ export default Vue.extend({
 .spell-search-result__detail-row {
   @include flex-row;
   justify-content: center;
-  margin: 16px 0;
   flex-wrap: wrap;
 }
 

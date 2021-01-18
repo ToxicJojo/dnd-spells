@@ -91,6 +91,9 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
     roll: parsedSpell.roll,
   }
 
+  // Double the line breaks so the spell text will be easier to read.
+  spell.text = spell.text.replace(/\n/g, '\n\n')
+
   // If there are material components add them to the spell.
   if (spell.components[spell.components.length - 1].startsWith('M')) {
     // The material component is within the brackets
