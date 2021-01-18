@@ -91,6 +91,15 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
     roll: parsedSpell.roll,
   }
 
+  // If there are material components add them to the spell.
+  if (spell.components[spell.components.length - 1].startsWith('M')) {
+    // The material component is within the brackets
+    const materialComponentRegExp = new RegExp(/.*(\(.*\))/)
+    const resultGroup = materialComponentRegExp.exec(spell.components[spell.components.length - 1])
+    spell.materialComponent = resultGroup ? resultGroup[1] : ''
+    spell.components[spell.components.length - 1] = 'M'
+  }
+
   return spell
 }
 

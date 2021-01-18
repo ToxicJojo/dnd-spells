@@ -13,18 +13,17 @@
     .spell-search-result__detail(v-if='showDetails')
       p {{ spell.text }}
       .spell-search-result__detail-row
-        .spell-search-result__detail-column
-          span Casting Time:
+        .spell-search-result__detail-entry
+          strong Casting Time:
           span {{ spell.time }}
-        .spell-search-result__detail-column
-          span Range/Area:
+        .spell-search-result__detail-entry
+          strong Range/Area:
           span {{ spell.range }}
-      .spell-search-result__detail-row
-        .spell-search-result__detail-column
-          span Duration:
+        .spell-search-result__detail-entry
+          strong Duration:
           span {{ spell.duration }}
-        .spell-search-result__detail-column
-          span Components:
+        .spell-search-result__detail-entry
+          strong Components:
           span
             template(v-for='(component, key) in spell.components')
               template(v-if='key !== 0')
@@ -96,12 +95,24 @@ export default Vue.extend({
 
 .spell-search-result__detail-row {
   @include flex-row;
-  justify-content: space-between;
+  justify-content: center;
   margin: 16px 0;
+  flex-wrap: wrap;
 }
 
-.spell-search-result__detail-column {
+.spell-search-result__detail-entry {
   @include flex-col;
+  padding: 16px;
+  flex: 50%;
+  align-items: center;
+
+  @media (min-width: 650px) {
+    flex: 25%;
+  }
+
+  span {
+    opacity: .8;
+  }
 }
 
 </style>

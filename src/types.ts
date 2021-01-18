@@ -46,6 +46,10 @@ export interface Spell {
    */
   components: Array<string>;
   /**
+   * The material component that is needed.
+   */
+  materialComponent?: string;
+  /**
    * The duration during which the spells effect last.
    */
   duration: string;

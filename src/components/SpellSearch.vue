@@ -45,7 +45,7 @@ export default Vue.extend({
 
 .spell-search__input {
   height: 64px;
-  font-size: 36px;
+  font-size: x-large;
   margin: 16px 0;
   padding: 16px;
   border: unset;

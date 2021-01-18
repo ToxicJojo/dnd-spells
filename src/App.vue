@@ -32,8 +32,8 @@ export default Vue.extend({
 
 .app__content {
   @include flex-col;
-  width: 100%;
   align-items: center;
+  width: 100%;
   padding: 32px 32px 0 32px;
   background: linear-gradient($color-background-gradient-start, $color-background-gradient-end);
   flex-grow: 1;
