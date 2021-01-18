@@ -41,10 +41,12 @@ export default Vue.extend({
   padding: 16px;
   background: $color-panel-background;
   box-shadow: 0px -2px 10px 0 rgba(0,0,0,.75);
+  z-index: 1;
+  width: 100%;
 
   ul {
     @include flex-row;
-    justify-content: space-between;
+    justify-content: space-around;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -58,10 +60,14 @@ export default Vue.extend({
   padding: 0 12px;
   text-decoration: none;
   font-size: small;
+  color: $color-accent;
+  opacity: .6;
+  fill: $color-accent;
 }
 
 .navigation-bar__item--active {
   font-weight: bold;
+  opacity: 1;
 }
 
 </style>

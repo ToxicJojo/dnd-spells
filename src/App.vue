@@ -25,11 +25,16 @@ export default Vue.extend({
 
 .app {
   @include flex-col;
+  align-items: center;
   min-height: 100vh;
+  max-height: 100vh;
 }
 
 .app__content {
-  padding: 32px;
+  @include flex-col;
+  width: 100%;
+  align-items: center;
+  padding: 32px 32px 0 32px;
   background: linear-gradient($color-background-gradient-start, $color-background-gradient-end);
   flex-grow: 1;
 }

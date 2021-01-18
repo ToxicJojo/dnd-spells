@@ -40,6 +40,7 @@ export default Vue.extend({
 
 .spell-search {
   @include flex-col;
+  overflow: hidden;
 }
 
 .spell-search__input {
