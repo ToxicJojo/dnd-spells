@@ -31,7 +31,9 @@
               | {{ component }}
       hr
       p.spell-search-result__text(v-html='spell.text')
-
+      p(v-if='spell.materialComponent')
+        strong *Material Component:
+        |  {{ spell.materialComponent }}
 </template>
 
 <script lang="ts">

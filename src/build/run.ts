@@ -110,6 +110,11 @@ const convertSpellText = (spellText: string) => {
   return convertedText
 }
 
+const convertComponents = (components: string) => {
+  const componentsWithoutMaterial = components.split('(')
+  return componentsWithoutMaterial[0].split(', ')
+}
+
 /**
  * Converts a XMLParsedSpell to an actual usable Spell object.
  * @param parsedSpell The XMLParsedSpell that will be converted.
@@ -125,7 +130,7 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
     ritual: parsedSpell.ritual[0] === 'YES',
     time: parsedSpell.time[0],
     range: parsedSpell.range[0],
-    components: parsedSpell.components[0].split(', '),
+    components: convertComponents(parsedSpell.components[0]),
     duration: parsedSpell.duration[0],
     text: convertSpellText(parsedSpell.text[0]),
     roll: parsedSpell.roll,
@@ -135,9 +140,11 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
   if (spell.components[spell.components.length - 1].startsWith('M')) {
     // The material component is within the brackets
     const materialComponentRegExp = new RegExp(/.*(\(.*\))/)
-    const resultGroup = materialComponentRegExp.exec(spell.components[spell.components.length - 1])
+    const resultGroup = materialComponentRegExp.exec(parsedSpell.components[0])
     spell.materialComponent = resultGroup ? resultGroup[1] : ''
-    spell.components[spell.components.length - 1] = 'M'
+    spell.materialComponent = spell.materialComponent.replace('(', '')
+    spell.materialComponent = spell.materialComponent.replace(')', '')
+    spell.components[spell.components.length - 1] = 'M*'
   }
 
   return spell
