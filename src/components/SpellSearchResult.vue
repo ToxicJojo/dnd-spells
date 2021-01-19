@@ -54,7 +54,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 
 .spell-search-result {
   @include flex-col;
@@ -103,6 +103,12 @@ export default Vue.extend({
 
 .spell-search-result__text {
   @include flex-col;
+
+  table {
+    display: block;
+    overflow: auto;
+    white-space: pre;
+  }
 }
 
 .spell-search-result__detail-entry {
