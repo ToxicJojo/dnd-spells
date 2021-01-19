@@ -64,6 +64,7 @@ export default Vue.extend({
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 .spell-search__empty-state {
@@ -77,5 +78,4 @@ export default Vue.extend({
   text-align: center;
   opacity: .7;
 }
-
 </style>
