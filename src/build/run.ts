@@ -70,6 +70,51 @@ const spellLevelToString = (spellLevel: string) => {
   }
 }
 
+const buildTable = (match: string, head: string, cells: string) => {
+  const headerCols = head.split('|')
+
+  const tableHeadCols = headerCols.reduce((res, col) => {
+    return `${res}<th>${col}</th>`
+  }, '')
+
+  const tableHead = `<thead><tr>${tableHeadCols}</tr></thead>`
+
+  const tableBodyRows = cells.split('\n')
+  let tableBody = '<tbody>'
+
+  tableBodyRows.forEach((bodyRow) => {
+    const bodyRowCols = bodyRow.split('|')
+    let row = '<tr>'
+    bodyRowCols.forEach((col) => {
+      row = `${row}<td>${col}</td>`
+    })
+    row = `${row}</tr>`
+
+    tableBody = `${tableBody}${row}`
+  })
+
+  const table = `<table>${tableHead}${tableBody}</table>\n`
+  return table
+}
+
+const convertSpellText = (spellText: string) => {
+  // Convert markdown tables to html
+  let convertedText = spellText.replace(/^(.*\|.*\|.*)\n((?:.*\|.*\|.*\n)*)*/gm, buildTable)
+  // Double the line breaks so the spell text will be easier to read.
+  convertedText = convertedText.replace(/\n/g, '\n\n')
+  // Make the Higher levels line bold and remove one of the linebreaks
+  convertedText = convertedText.replace(/At Higher Levels:\n/g, '<strong>At Higher Levels:</strong>')
+  // Make all the text that describe certain parts of a spell bold. (see https://regex101.com/r/s6YPL8/1 for regexp information)
+  convertedText = convertedText.replace(/\n(.*):/g, '\n<strong>$1:</strong>')
+
+  return convertedText
+}
+
+const convertComponents = (components: string) => {
+  const componentsWithoutMaterial = components.split('(')
+  return componentsWithoutMaterial[0].split(', ')
+}
+
 /**
  * Converts a XMLParsedSpell to an actual usable Spell object.
  * @param parsedSpell The XMLParsedSpell that will be converted.
@@ -85,10 +130,21 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
     ritual: parsedSpell.ritual[0] === 'YES',
     time: parsedSpell.time[0],
     range: parsedSpell.range[0],
-    components: parsedSpell.components[0].split(', '),
+    components: convertComponents(parsedSpell.components[0]),
     duration: parsedSpell.duration[0],
-    text: parsedSpell.text[0],
+    text: convertSpellText(parsedSpell.text[0]),
     roll: parsedSpell.roll,
+  }
+
+  // If there are material components add them to the spell.
+  if (spell.components[spell.components.length - 1].startsWith('M')) {
+    // The material component is within the brackets
+    const materialComponentRegExp = new RegExp(/.*(\(.*\))/)
+    const resultGroup = materialComponentRegExp.exec(parsedSpell.components[0])
+    spell.materialComponent = resultGroup ? resultGroup[1] : ''
+    spell.materialComponent = spell.materialComponent.replace('(', '')
+    spell.materialComponent = spell.materialComponent.replace(')', '')
+    spell.components[spell.components.length - 1] = 'M*'
   }
 
   return spell

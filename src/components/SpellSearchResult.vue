@@ -11,26 +11,29 @@
         path(d='M0 0h24v24H0z' fill='none')
         path(d='M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z')
     .spell-search-result__detail(v-if='showDetails')
-      p {{ spell.text }}
       .spell-search-result__detail-row
-        .spell-search-result__detail-column
-          span Casting Time:
-          span {{ spell.time }}
-        .spell-search-result__detail-column
-          span Range/Area:
+        .spell-search-result__detail-entry
+          strong Casting Time:
+          span(v-if='spell.ritual') {{ spell.time }}/Ritual
+          span(v-else) {{ spell.time }}
+        .spell-search-result__detail-entry
+          strong Range/Area:
           span {{ spell.range }}
-      .spell-search-result__detail-row
-        .spell-search-result__detail-column
-          span Duration:
+        .spell-search-result__detail-entry
+          strong Duration:
           span {{ spell.duration }}
-        .spell-search-result__detail-column
-          span Components:
+        .spell-search-result__detail-entry
+          strong Components:
           span
             template(v-for='(component, key) in spell.components')
               template(v-if='key !== 0')
                 | ,
               | {{ component }}
-
+      hr
+      p.spell-search-result__text(v-html='spell.text')
+      p(v-if='spell.materialComponent')
+        strong *Material Component:
+        |  {{ spell.materialComponent }}
 </template>
 
 <script lang="ts">
@@ -53,7 +56,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 
 .spell-search-result {
   @include flex-col;
@@ -96,12 +99,34 @@ export default Vue.extend({
 
 .spell-search-result__detail-row {
   @include flex-row;
-  justify-content: space-between;
-  margin: 16px 0;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.spell-search-result__detail-column {
+.spell-search-result__text {
   @include flex-col;
+
+  table {
+    display: block;
+    overflow: auto;
+    white-space: pre;
+  }
+}
+
+.spell-search-result__detail-entry {
+  @include flex-col;
+  flex: 50%;
+  align-items: center;
+  text-align: center;
+  padding: 16px;
+
+  @media (min-width: 650px) {
+    flex: 25%;
+  }
+
+  span {
+    opacity: .8;
+  }
 }
 
 </style>

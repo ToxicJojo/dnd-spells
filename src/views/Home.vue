@@ -20,7 +20,9 @@ export default Vue.extend({
 .home {
   @include flex-col;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 </style>
