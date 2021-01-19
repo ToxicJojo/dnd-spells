@@ -14,7 +14,8 @@
       .spell-search-result__detail-row
         .spell-search-result__detail-entry
           strong Casting Time:
-          span {{ spell.time }}
+          span(v-if='spell.ritual') {{ spell.time }}/Ritual
+          span(v-else) {{ spell.time }}
         .spell-search-result__detail-entry
           strong Range/Area:
           span {{ spell.range }}
@@ -29,7 +30,7 @@
                 | ,
               | {{ component }}
       hr
-      p {{ spell.text }}
+      p.spell-search-result__text(v-html='spell.text')
 
 </template>
 
@@ -98,6 +99,10 @@ export default Vue.extend({
   @include flex-row;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.spell-search-result__text {
+  @include flex-col;
 }
 
 .spell-search-result__detail-entry {

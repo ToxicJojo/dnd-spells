@@ -1,10 +1,10 @@
 <template lang='pug'>
   .spell-search
     input.spell-search__input(type='text' v-model='searchInput' ref='searchInput' placeholder='Search a spell')
-    ul.spell-search__results(v-if='searchResults.length !== 0')
+    ul.spell-search__results
       li(v-for='spell in searchResults')
-        SpellSearchResult(:spell='spell')
-    .spell-search__empty-state(v-else)
+        SpellSearchResult(:spell='spell' :key='spell.id')
+    .spell-search__empty-state(v-if='searchResults.length === 0')
       span There are no spells matching your search
 </template>
 

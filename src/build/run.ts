@@ -70,6 +70,46 @@ const spellLevelToString = (spellLevel: string) => {
   }
 }
 
+const buildTable = (match: string, head: string, cells: string) => {
+  const headerCols = head.split('|')
+
+  const tableHeadCols = headerCols.reduce((res, col) => {
+    return `${res}<th>${col}</th>`
+  }, '')
+
+  const tableHead = `<thead><tr>${tableHeadCols}</tr></thead>`
+
+  const tableBodyRows = cells.split('\n')
+  let tableBody = '<tbody>'
+
+  tableBodyRows.forEach((bodyRow) => {
+    const bodyRowCols = bodyRow.split('|')
+    let row = '<tr>'
+    bodyRowCols.forEach((col) => {
+      row = `${row}<td>${col}</td>`
+    })
+    row = `${row}</tr>`
+
+    tableBody = `${tableBody}${row}`
+  })
+
+  const table = `<table>${tableHead}${tableBody}</table>\n`
+  return table
+}
+
+const convertSpellText = (spellText: string) => {
+  // Convert markdown tables to html
+  let convertedText = spellText.replace(/^(.*\|.*\|.*)\n((?:.*\|.*\|.*\n)*)*/gm, buildTable)
+  // Double the line breaks so the spell text will be easier to read.
+  convertedText = convertedText.replace(/\n/g, '\n\n')
+  // Make the Higher levels line bold and remove one of the linebreaks
+  convertedText = convertedText.replace(/At Higher Levels:\n/g, '<strong>At Higher Levels:</strong>')
+  // Make all the text that describe certain parts of a spell bold. (see https://regex101.com/r/s6YPL8/1 for regexp information)
+  convertedText = convertedText.replace(/\n(.*):/g, '\n<strong>$1:</strong>')
+
+  return convertedText
+}
+
 /**
  * Converts a XMLParsedSpell to an actual usable Spell object.
  * @param parsedSpell The XMLParsedSpell that will be converted.
@@ -87,12 +127,9 @@ const convertSpell = (parsedSpell: XMLParsedSpell) => {
     range: parsedSpell.range[0],
     components: parsedSpell.components[0].split(', '),
     duration: parsedSpell.duration[0],
-    text: parsedSpell.text[0],
+    text: convertSpellText(parsedSpell.text[0]),
     roll: parsedSpell.roll,
   }
-
-  // Double the line breaks so the spell text will be easier to read.
-  spell.text = spell.text.replace(/\n/g, '\n\n')
 
   // If there are material components add them to the spell.
   if (spell.components[spell.components.length - 1].startsWith('M')) {
