@@ -43,6 +43,7 @@ const nameToId = (name: string) => {
   // Lowercase the name and replace all whitespace with a '-'.
   let id = name.toLowerCase()
   id = id.replace(/ /g, '-')
+  id = id.replace(/\//g, '-')
   return id
 }
 

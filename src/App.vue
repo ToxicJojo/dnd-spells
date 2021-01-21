@@ -37,7 +37,7 @@ export default Vue.extend({
   padding: 32px 32px 0 32px;
   background: linear-gradient($color-background-gradient-start, $color-background-gradient-end);
   flex-grow: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 
 </style>
