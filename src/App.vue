@@ -1,6 +1,6 @@
 <template lang="pug">
   .app
-    .app__content
+    main.app__content
       router-view(v-if='!isLoading')
     NavigationBar
 </template>
