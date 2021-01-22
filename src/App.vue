@@ -1,7 +1,7 @@
 <template lang="pug">
   .app
     .app__content
-      router-view
+      router-view(v-if='!isLoading')
     NavigationBar
 </template>
 
@@ -11,8 +11,14 @@ import NavigationBar from '@/components/NavigationBar.vue'
 
 export default Vue.extend({
   name: 'App',
-  mounted () {
-    this.$store.dispatch('loadSpells')
+  data () {
+    return {
+      isLoading: true,
+    }
+  },
+  async mounted () {
+    await this.$store.dispatch('loadSpells')
+    this.isLoading = false
   },
   components: {
     NavigationBar,
