@@ -1,10 +1,8 @@
 <template lang='pug'>
-  .spell-list
-    .spell-list__filter
-    ul.spell-list__results
-      li(v-for='spell in filterdSpells')
-        input(type='checkbox')
-        SpellListItem(:spell='spell')
+  ul.spell-list
+    li(v-for='spell in filterdSpells')
+      input(type='checkbox')
+      SpellListItem(:spell='spell')
 </template>
 
 <script lang='ts'>
@@ -56,22 +54,8 @@ export default Vue.extend({
 
 .spell-list {
   @include flex-col;
-  margin-bottom: 32px;
-}
-
-.spell-list__filter {
-  @include flex-col;
-}
-
-.spell-list__table {
-  background-color: $color-panel-background;
-  margin: 0 -32px;
-}
-
-.spell-list__results {
-  @include flex-col;
   list-style: none;
-  margin: 0;
+  margin: 32px 0px;
   padding: 0;
 
   li {
