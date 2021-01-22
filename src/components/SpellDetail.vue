@@ -1,5 +1,7 @@
 <template lang='pug'>
   .spell-detail
+    .spell-detail__close(@click='$router.back()')
+      CloseIcon
     .spell-detail__title
       h1 {{ spell.name }}
       p {{ spell.levelName }} {{ spell.school }}
@@ -22,13 +24,24 @@
               | {{ component }}
     hr
     p.spell-detail__text(v-html='spell.text')
+    strong Classes:
+    span
+      template(v-for='(className, key) in spell.classes')
+        template(v-if='key !== 0')
+          | ,
+        | {{ className }}
 
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
+import CloseIcon from '@/components/icons/CloseIcon.vue'
+
 export default Vue.extend({
   name: 'SpellDetail',
+  components: {
+    CloseIcon,
+  },
   computed: {
     spell () {
       return this.$store.state.spells[this.$route.params.spellId]
@@ -65,7 +78,14 @@ hr {
   background: $color-panel-background;
   width: 100%;
   padding: 24px;
-  margin-bottom: 24px
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.spell-detail__close {
+  position: absolute;
+  left: 8px;
+  top: 8px;
 }
 
 .spell-detail__property-row {

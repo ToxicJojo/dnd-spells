@@ -58,6 +58,9 @@ export default Vue.extend({
   },
   methods: {
     update (key: string, value: any) {
+      if (key === 'level') {
+        value = Number(value)
+      }
       this.$emit('input', { ...this.value, [key]: value })
     },
   },
