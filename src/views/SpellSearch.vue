@@ -42,6 +42,8 @@ export default Vue.extend({
 
 .spell-search {
   @include flex-col;
+  width: 100%;
+  max-width: 1000px;
   flex-grow: 1;
   overflow: hidden;
 }
