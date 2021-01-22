@@ -42,13 +42,7 @@
 
 <script lang='ts'>
 import Vue, { PropType } from 'vue'
-
-interface Filter {
-  search: string;
-  school: string;
-  class: string;
-  level: number;
-}
+import { Filter } from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellListFilter',

@@ -1,6 +1,6 @@
 <template lang='pug'>
   .spell-search
-    input.spell-search__input(type='text' v-model='searchInput' ref='searchInput' placeholder='Search a spell')
+    input.spell-search__input(type='text' v-model='searchInput' placeholder='Search a spell')
     ul.spell-search__results
       li(v-for='spell in searchResults')
         SpellSearchResult(:spell='spell' :key='spell.id')
