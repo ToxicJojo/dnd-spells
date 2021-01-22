@@ -83,6 +83,7 @@ export default Vue.extend({
   h2 {
     font-size: larger;
     font-weight: bold;
+    color: $color-text-heading;
     margin: 0 0 4px 0;
   }
 
@@ -125,7 +126,7 @@ export default Vue.extend({
   }
 
   span {
-    opacity: .8;
+    color: $color-text-light;
   }
 }
 

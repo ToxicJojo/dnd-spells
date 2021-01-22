@@ -1,4 +1,4 @@
-import { SpellCollection } from '@/types'
+import { Spell, SpellCollection } from '@/types'
 
 const searchFilter = (spellCollection: SpellCollection, searchTerm: string) => {
   // Return an empty array if there is no search term
@@ -15,6 +15,27 @@ const searchFilter = (spellCollection: SpellCollection, searchTerm: string) => {
   })
 }
 
+const schoolFilter = (spellList: Array<Spell>, school: string) => {
+  return spellList.filter((spell) => {
+    return spell.school === school
+  })
+}
+
+const classFilter = (spellList: Array<Spell>, className: string) => {
+  return spellList.filter((spell) => {
+    return spell.classes.includes(className)
+  })
+}
+
+const levelFilter = (spellList: Array<Spell>, spellLevel: number) => {
+  return spellList.filter((spell) => {
+    return spell.level === spellLevel
+  })
+}
+
 export default {
+  classFilter,
   searchFilter,
+  schoolFilter,
+  levelFilter,
 }
