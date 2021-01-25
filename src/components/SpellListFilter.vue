@@ -42,7 +42,7 @@
 
 <script lang='ts'>
 import Vue, { PropType } from 'vue'
-import { Filter } from '@/util/spell-filter'
+import { SpellFilter } from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellListFilter',
@@ -53,7 +53,7 @@ export default Vue.extend({
   },
   props: {
     value: {
-      type: Object as PropType<Filter>,
+      type: Object as PropType<SpellFilter>,
       required: true,
     },
   },

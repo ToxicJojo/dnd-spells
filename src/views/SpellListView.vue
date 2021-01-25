@@ -8,7 +8,7 @@
 import Vue from 'vue'
 import SpellList from '@/components/SpellList.vue'
 import SpellListFilter from '@/components/SpellListFilter.vue'
-import { Filter } from '@/util/spell-filter'
+import { SpellFilter } from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellListview',
@@ -19,7 +19,7 @@ export default Vue.extend({
         school: 'All',
         class: 'All',
         level: -1,
-      } as Filter,
+      } as SpellFilter,
     }
   },
   components: {

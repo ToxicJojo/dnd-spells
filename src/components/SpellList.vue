@@ -9,13 +9,13 @@
 import Vue, { PropType } from 'vue'
 import { Spell } from '@/types'
 import SpellListItem from '@/components/SpellListItem.vue'
-import spellFilter, { Filter } from '@/util/spell-filter'
+import spellFilter, { SpellFilter } from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellList',
   props: {
     filter: {
-      type: Object as PropType<Filter>,
+      type: Object as PropType<SpellFilter>,
       required: true,
     },
   },

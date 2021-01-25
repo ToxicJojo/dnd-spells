@@ -3,7 +3,7 @@ import { Spell } from '@/types'
 /**
  * Represents the possible filters used for spell filtering.
  */
-export interface Filter {
+export interface SpellFilter {
   search: string;
   school: string;
   class: string;
