@@ -1,16 +1,16 @@
 <template lang='pug'>
   .spell-search
-    input.spell-search__input(type='text' v-model='searchInput' ref='searchInput' placeholder='Search a spell')
+    input.spell-search__input(type='text' v-model='searchInput' placeholder='Search a spell')
     ul.spell-search__results
       li(v-for='spell in searchResults')
         SpellSearchResult(:spell='spell' :key='spell.id')
     .spell-search__empty-state(v-if='searchResults.length === 0')
-      span There are no spells matching your search
+      p There are no spells matching your search
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import { Spell, SpellCollection } from '@/types'
+import { Spell } from '@/types'
 import SpellSearchResult from '@/components/SpellSearchResult.vue'
 import spellFilter from '@/util/spell-filter'
 
@@ -21,12 +21,9 @@ export default Vue.extend({
       searchInput: '',
     }
   },
-  mounted () {
-    (this.$refs.searchInput as HTMLInputElement).focus()
-  },
   computed: {
-    spells (): SpellCollection {
-      return this.$store.state.spells
+    spells (): Array<Spell> {
+      return Object.values(this.$store.state.spells)
     },
     searchResults (): Array<Spell> {
       return spellFilter.searchFilter(this.spells, this.searchInput)
@@ -42,21 +39,24 @@ export default Vue.extend({
 
 .spell-search {
   @include flex-col;
+  width: 100%;
   flex-grow: 1;
+  max-width: 1000px;
   overflow: hidden;
 }
 
 .spell-search__input {
-  height: 64px;
-  font-size: x-large;
-  margin: 16px 0;
+  margin-bottom: 32px;
   padding: 16px;
-  border: unset;
-  border-radius: 2px;
   box-shadow: -1px 4px 10px 0 rgba(0,0,0,.75);
   background: $color-panel-background;
-  color: $color-text;
+
+  font-size: x-large;
   font-family: 'Noto Sans JP';
+  color: $color-text;
+
+  border: unset;
+  border-radius: 2px;
 }
 
 .spell-search__results {
@@ -72,6 +72,7 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+
   color: #eee;
   font-size: large;
   font-weight: bold;

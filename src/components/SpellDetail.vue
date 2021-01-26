@@ -5,42 +5,20 @@
     .spell-detail__title
       h1 {{ spell.name }}
       p {{ spell.levelName }} {{ spell.school }}
-    .spell-detail__property-row
-      .spell-detail__property
-        strong Casting Time:
-        span {{ spell.time }}
-      .spell-detail__property
-        strong Range/Area:
-        span {{ spell.range }}
-      .spell-detail__property
-        strong Duration:
-        span {{ spell.duration }}
-      .spell-detail__property
-        strong Components:
-        span
-            template(v-for='(component, key) in spell.components')
-              template(v-if='key !== 0')
-                | ,
-              | {{ component }}
-    hr
-    p.spell-detail__text(v-html='spell.text')
-    strong Classes:
-    span
-      template(v-for='(className, key) in spell.classes')
-        template(v-if='key !== 0')
-          | ,
-        | {{ className }}
+    SpellInfo(:spell='spell')
 
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
 import CloseIcon from '@/components/icons/CloseIcon.vue'
+import SpellInfo from '@/components/SpellInfo.vue'
 
 export default Vue.extend({
   name: 'SpellDetail',
   components: {
     CloseIcon,
+    SpellInfo,
   },
   computed: {
     spell () {

@@ -29,8 +29,6 @@ export default Vue.extend({
     SpellListIcon,
     SpellBookIcon,
   },
-  computed: {
-  },
 })
 </script>
 
@@ -60,8 +58,8 @@ export default Vue.extend({
   padding: 0 12px;
   text-decoration: none;
   font-size: small;
-  color: $color-accent;
   opacity: .6;
+  color: $color-accent;
   fill: $color-accent;
 }
 

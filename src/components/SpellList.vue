@@ -6,22 +6,22 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
-import { Spell, SpellCollection } from '@/types'
+import Vue, { PropType } from 'vue'
+import { Spell } from '@/types'
 import SpellListItem from '@/components/SpellListItem.vue'
-import spellFilter from '@/util/spell-filter'
+import spellFilter, { SpellFilter } from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellList',
   props: {
     filter: {
-      type: Object,
+      type: Object as PropType<SpellFilter>,
       required: true,
     },
   },
   computed: {
-    spells (): SpellCollection {
-      return this.$store.state.spells
+    spells (): Array<Spell> {
+      return Object.values(this.$store.state.spells)
     },
     filterdSpells (): Array<Spell> {
       let filterdSpells = Object.values(this.spells)
