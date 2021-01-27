@@ -41,10 +41,11 @@ export default Vue.extend({
 })
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 
 .spell-info {
   @include flex-col;
+  width: 100%;
 }
 
 .spell-info__property-row {
@@ -68,7 +69,14 @@ export default Vue.extend({
 }
 
 .spell-info__text {
+  @include flex-col;
   white-space: pre-line;
+
+  table {
+    display: block;
+    overflow: auto;
+    white-space: pre;
+  }
 }
 
 </style>

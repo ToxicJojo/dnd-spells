@@ -1,8 +1,9 @@
 <template lang='pug'>
   router-link(:to='"/spells/" + spell.id').spell-list-item
     span.spell-list-item__heading {{ spell.name }}
-    span.spell-list-item__subheading {{ spell.levelName }}
-    span.spell-list-item__subheading {{ spell.school }}
+    span.spell-list-item__subheading
+      span {{ spell.levelName }}
+      span {{ spell.school }}
 </template>
 
 <script lang='ts'>
@@ -23,16 +24,20 @@ export default Vue.extend({
 <style lang='scss' scoped>
 
 .spell-list-item {
-  @include flex-row;
-  align-items: flex-end;
-  flex-grow: 1;
+  @include flex-col;
+  @media (min-width: 500px) {
+    @include flex-row;
+  }
+
+  align-items: center;
+  justify-content: space-between;
   background: $color-panel-background;
   padding: 4px 8px;
   margin: 4px;
+  flex-grow: 1;
 }
 
 .spell-list-item__heading {
-  //font-size: large;
   color: $color-text-heading;
   font-weight: bold;
   flex-grow: 1;
@@ -41,6 +46,16 @@ export default Vue.extend({
 .spell-list-item__subheading {
   font-size: small;
   color: $color-text-light;
+
+  @include flex-row;
+  align-items: center;
+  flex-basis: 50%;
+
+  span {
+    display: inline-block;
+    flex: 50%;
+    white-space: nowrap;
+  }
 }
 
 </style>
