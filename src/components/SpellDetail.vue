@@ -58,12 +58,14 @@ hr {
   padding: 24px;
   margin-bottom: 24px;
   position: relative;
+  overflow-y: auto;
 }
 
 .spell-detail__close {
   position: absolute;
   left: 8px;
   top: 8px;
+  cursor: pointer;
 }
 
 .spell-detail__property-row {

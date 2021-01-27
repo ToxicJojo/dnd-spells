@@ -1,7 +1,7 @@
 <template lang='pug'>
   .spell-list-filter
     .spell-list-filter__input
-      input(:value='value.search' @input='update("search", $event.target.value)')
+      input(:value='value.search' @input='update("search", $event.target.value)' placeholder='Spellname')
       button(@click='showFilter = !showFilter')
         template(v-if='!showFilter') Show Filter
         template(v-else) Hide Filter
@@ -89,6 +89,10 @@ export default Vue.extend({
     font-size: large;
     text-align: center;
     flex-basis: 100%;
+    @media (min-width: 800px) {
+      flex-basis: 33%;
+      padding: 8px;
+    }
   }
 
   select {
@@ -103,8 +107,13 @@ export default Vue.extend({
 }
 
 .spell-list-filter__input {
-  @include flex-row;
+  @include flex-col;
+
+  @media (min-width: 500px) {
+    @include flex-row;
+  }
   margin-bottom: 8px;
+  flex-basis: 100%;
 
   button {
     background-color: $color-panel-background;

@@ -57,6 +57,7 @@ export default Vue.extend({
   list-style: none;
   margin: 32px 0px;
   padding: 0;
+  overflow: auto;
 
   li {
     @include flex-row;
