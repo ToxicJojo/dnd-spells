@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Spell, SpellCollection } from '@/types'
+import { Spell, SpellBook, SpellBookCollection, SpellCollection } from '@/types'
 import { StoreState } from './state'
 
 const mutations = {
@@ -11,6 +11,15 @@ const mutations = {
   },
   removeSpell (state: StoreState, spellId: string) {
     Vue.delete(state.spells, spellId)
+  },
+  setSpellBooks (state: StoreState, spellBooks: SpellBookCollection) {
+    state.spellBooks = spellBooks
+  },
+  addSpellBook (state: StoreState, spellBook: SpellBook) {
+    Vue.set(state.spells, spellBook.id, spellBook)
+  },
+  removeSpellBook (state: StoreState, spellBook: SpellBook) {
+    Vue.delete(state.spellBooks, spellBook.id)
   },
 }
 
