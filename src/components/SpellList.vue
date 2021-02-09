@@ -1,8 +1,9 @@
 <template lang='pug'>
   ul.spell-list
     li(v-for='spell in filterdSpells')
-      input(type='checkbox')
+      input(type='checkbox' v-model='selectedSpells' :value='spell')
       SpellListItem(:spell='spell')
+    button.spell-list__fab(v-if='selectedSpells.length > 0' @click='addSpells') Add {{ selectedSpells.length }} Spells to Spellbook
 </template>
 
 <script lang='ts'>
@@ -13,6 +14,11 @@ import spellFilter, { SpellFilter } from '@/util/spell-filter'
 
 export default Vue.extend({
   name: 'SpellList',
+  data () {
+    return {
+      selectedSpells: [],
+    }
+  },
   props: {
     filter: {
       type: Object as PropType<SpellFilter>,
@@ -44,6 +50,14 @@ export default Vue.extend({
       return filterdSpells
     },
   },
+  methods: {
+    addSpells () {
+      this.selectedSpells.forEach((spell) => {
+        this.$store.commit('addToSpellBook', spell)
+      })
+      this.selectedSpells = []
+    },
+  },
   components: {
     SpellListItem,
   },
@@ -67,6 +81,23 @@ export default Vue.extend({
   a {
     text-decoration: none;
   }
+}
+
+.spell-list__fab {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+
+  height: 48px;
+  padding: 16px;
+
+  border: unset;
+  border-radius: 16px;
+
+  background-color: $color-fab-background;
+  color: $color-panel-background;
+  font-weight: bold;
+  font-size: medium;
 }
 
 </style>

@@ -21,6 +21,12 @@ const mutations = {
   removeSpellBook (state: StoreState, spellBook: SpellBook) {
     Vue.delete(state.spellBooks, spellBook.id)
   },
+  setSpellBook (state: StoreState, spellBook: SpellCollection) {
+    state.spellBook = spellBook
+  },
+  addToSpellBook (state: StoreState, spell: Spell) {
+    Vue.set(state.spellBook, spell.id, spell)
+  },
 }
 
 export default mutations

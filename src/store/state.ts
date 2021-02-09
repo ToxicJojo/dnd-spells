@@ -6,11 +6,13 @@ import { SpellBookCollection, SpellCollection } from '@/types'
 export interface StoreState {
   spells: SpellCollection;
   spellBooks: SpellBookCollection;
+  spellBook: SpellCollection;
 }
 
 const state: StoreState = {
   spells: {},
   spellBooks: {},
+  spellBook: {},
 }
 
 export default state
