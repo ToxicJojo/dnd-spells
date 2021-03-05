@@ -10,7 +10,7 @@ const emptyState = (): StoreState => {
   return {
     spells: {
     },
-    spellBooks: {
+    spellBook: {
     },
   }
 }

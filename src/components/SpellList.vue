@@ -3,7 +3,7 @@
     li(v-for='spell in filterdSpells')
       input(type='checkbox' v-model='selectedSpells' :value='spell')
       SpellListItem(:spell='spell')
-    button.spell-list__fab(v-if='selectedSpells.length > 0' @click='addSpells') Add {{ selectedSpells.length }} Spells to Spellbook
+    button.spell-list__fab(v-if='selectedSpells.length > 0' @click='addSpells') Add {{ selectedSpells.length }} {{ (selectedSpells.length === 1) ? 'Spell' : 'Spells'}} to Spellbook
 </template>
 
 <script lang='ts'>
