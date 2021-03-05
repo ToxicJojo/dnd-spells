@@ -41,7 +41,6 @@ export default Vue.extend({
   @include flex-col;
   width: 100%;
   flex-grow: 1;
-  max-width: 1000px;
   overflow: hidden;
 }
 

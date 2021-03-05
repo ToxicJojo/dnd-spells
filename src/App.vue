@@ -31,7 +31,9 @@ export default Vue.extend({
 
 .app {
   @include flex-col;
+  align-items: center;
   height: 100vh;
+  background: linear-gradient($color-background-gradient-start, $color-background-gradient-end);
 }
 
 .app__content {
@@ -41,9 +43,9 @@ export default Vue.extend({
 
   position: relative;
   width: 100%;
+  max-width: 1000px;
   padding: 32px 32px 0 32px;
 
-  background: linear-gradient($color-background-gradient-start, $color-background-gradient-end);
   overflow: auto;
 }
 
