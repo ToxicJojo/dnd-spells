@@ -39,6 +39,7 @@ export default Vue.extend({
   align-items: center;
   flex-grow: 1;
 
+  position: relative;
   width: 100%;
   padding: 32px 32px 0 32px;
 

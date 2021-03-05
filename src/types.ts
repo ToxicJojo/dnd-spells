@@ -73,3 +73,16 @@ export interface Spell {
 export interface SpellCollection {
   [key: string]: Spell;
 }
+
+/**
+ * Represents a spell book for a character. It contains a list of spells.
+ */
+export interface SpellBook {
+  id: string;
+  name: string;
+  spells: Array<Spell>;
+}
+
+export interface SpellBookCollection {
+  [key: string]: SpellBook;
+}
