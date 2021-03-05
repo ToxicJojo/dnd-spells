@@ -44,7 +44,7 @@ export default Vue.extend({
   position: relative;
   width: 100%;
   max-width: 1000px;
-  padding: 32px 32px 0 32px;
+  padding: 24px 24px 0 24px;
 
   overflow: auto;
 }

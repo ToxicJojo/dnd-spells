@@ -3,8 +3,9 @@
     .spell-list-filter__input
       input(:value='value.search' @input='update("search", $event.target.value)' placeholder='Spellname')
       button(@click='showFilter = !showFilter')
-        template(v-if='!showFilter') Show Filter
-        template(v-else) Hide Filter
+        FilterIcon
+        //template(v-if='!showFilter') Show Filter
+        //template(v-else) Hide Filter
     .spell-list-filter__row
       template(v-if='showFilter')
         label School
@@ -21,6 +22,7 @@ import { SpellFilter } from '@/util/spell-filter'
 import ClassSelect from '@/components/selects/ClassSelect.vue'
 import SchoolSelect from '@/components/selects/SchoolSelect.vue'
 import LevelSelect from '@/components/selects/LevelSelect.vue'
+import FilterIcon from '@/components/icons/FilterIcon.vue'
 
 export default Vue.extend({
   name: 'SpellListFilter',
@@ -39,6 +41,7 @@ export default Vue.extend({
     ClassSelect,
     SchoolSelect,
     LevelSelect,
+    FilterIcon,
   },
   methods: {
     update (key: string, value: any) {
@@ -76,11 +79,7 @@ export default Vue.extend({
 }
 
 .spell-list-filter__input {
-  @include flex-col;
-
-  @media (min-width: 500px) {
-    @include flex-row;
-  }
+  @include flex-row;
   margin-bottom: 8px;
   flex-basis: 100%;
 
