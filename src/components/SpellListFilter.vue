@@ -4,8 +4,6 @@
       input(:value='value.search' @input='update("search", $event.target.value)' placeholder='Spellname')
       button(@click='showFilter = !showFilter')
         FilterIcon
-        //template(v-if='!showFilter') Show Filter
-        //template(v-else) Hide Filter
     .spell-list-filter__row
       template(v-if='showFilter')
         label School
@@ -84,6 +82,7 @@ export default Vue.extend({
   flex-basis: 100%;
 
   button {
+    display: flex;
     background-color: $color-panel-background;
     border: none;
     padding: 8px;
