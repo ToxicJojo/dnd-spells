@@ -3,6 +3,8 @@
     ul
       li(v-for='spell in spells')
         SpellBookEntry(:spell='spell')
+    .spell-book-view__empty-state(v-if='showEmptyState')
+      p There are no spells in your spell book. Add some from the spell list.
 </template>
 
 <script lang='ts'>
@@ -16,6 +18,9 @@ export default Vue.extend({
     spells (): SpellCollection {
       return this.$store.state.spellBook
     },
+    showEmptyState (): boolean {
+      return Object.keys(this.spells).length === 0
+    },
   },
   components: {
     SpellBookEntry,
@@ -28,6 +33,7 @@ export default Vue.extend({
 .spell-book-view {
   @include flex-col;
   width: 100%;
+  height: 100%;
 
   ul {
     @include flex-row;
@@ -45,6 +51,19 @@ export default Vue.extend({
       }
     }
   }
+}
+
+.spell-book-view__empty-state {
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  color: #eee;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  opacity: .7;
 }
 
 </style>
