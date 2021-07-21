@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:prod": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build",
+    "build:spell-files": "tsc --outDir temp/ src/build/run.ts && node  temp/build/run.js && rm -r temp/",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
@@ -16,8 +18,11 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.5.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^5.2.4",
+    "@types/sinon": "^9.0.10",
+    "@types/xml2js": "^0.4.7",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -39,8 +44,12 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.12.0",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.1.0",
     "sass-loader": "^8.0.2",
+    "sinon": "^9.2.3",
     "typescript": "~3.9.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "xml2js": "^0.4.23"
   }
 }

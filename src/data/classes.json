@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Artificer",
+        "value": "Artificer"
+    },
+    {
+        "name": "Bard",
+        "value": "Bard"
+    },
+    {
+        "name": "Cleric",
+        "value": "Cleric"
+    },
+    {
+        "name": "Druid",
+        "value": "Druid"
+    },
+    {
+        "name": "Paladin",
+        "value": "Paladin"
+    },
+    {
+        "name": "Ranger",
+        "value": "Ranger"
+    },
+    {
+        "name": "Sorcerer",
+        "value": "Sorcerer"
+    },
+    {
+        "name": "Warlock",
+        "value": "Warlock"
+    },
+    {
+        "name": "Wizard",
+        "value": "Wizard"
+    }
+]

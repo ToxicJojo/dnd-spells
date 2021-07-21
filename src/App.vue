@@ -1,32 +1,52 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+  .app
+    main.app__content
+      router-view(v-if='!isLoading')
+    NavigationBar
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue from 'vue'
+import NavigationBar from '@/components/NavigationBar.vue'
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default Vue.extend({
+  name: 'App',
+  data () {
+    return {
+      isLoading: true,
     }
-  }
+  },
+  async mounted () {
+    await this.$store.dispatch('loadSpells')
+    this.isLoading = false
+  },
+  components: {
+    NavigationBar,
+  },
+})
+</script>
+
+<style lang="scss">
+@import '@/scss/style.scss';
+
+.app {
+  @include flex-col;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient($color-background-gradient-start, $color-background-gradient-end);
 }
+
+.app__content {
+  @include flex-col;
+  align-items: center;
+  flex-grow: 1;
+
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  padding: 24px 24px 0 24px;
+
+  overflow: auto;
+}
+
 </style>
