@@ -32,9 +32,10 @@ export default Vue.extend({
   align-items: center;
   justify-content: space-between;
   background: $color-panel-background;
-  padding: 4px 8px;
+  padding: 12px 12px;
   margin: 4px;
   flex-grow: 1;
+  border-radius: 8px;
 }
 
 .spell-list-item__heading {
@@ -55,6 +56,7 @@ export default Vue.extend({
     display: inline-block;
     flex: 50%;
     white-space: nowrap;
+    margin-left: 3px;
   }
 }
 
