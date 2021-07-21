@@ -19,12 +19,12 @@
               | {{ component }}
     hr
     p.spell-info__text(v-html='spell.text')
-    strong Classes:
-    span
+    p
+      strong Classes:
       template(v-for='(className, key) in spell.classes')
         template(v-if='key !== 0')
           | ,
-        | {{ className }}
+        |  {{ className }}
 </template>
 
 <script lang='ts'>

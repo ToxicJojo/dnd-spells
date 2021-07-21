@@ -1,0 +1,30 @@
+[
+  {
+      "name": "Abjuration",
+      "value": "Abjuration"
+  },
+  {
+      "name": "Conjuration",
+      "value": "Conjuration"
+  },
+  {
+      "name": "Divination",
+      "value": "Divination"
+  },
+  {
+      "name": "Enchantment",
+      "value": "Enchantment"
+  },
+  {
+      "name": "Evocation",
+      "value": "Evocation"
+  },
+  {
+      "name": "Illusion",
+      "value": "Illusion"
+  },
+  {
+      "name": "Necromancy",
+      "value": "Necromancy"
+  }
+]

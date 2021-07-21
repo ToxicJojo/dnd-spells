@@ -34,7 +34,6 @@ export default Vue.extend({
 .spell-list-view {
   @include flex-col;
   width: 100%;
-  max-width: 1000px;
   overflow: hidden;
 }
 
